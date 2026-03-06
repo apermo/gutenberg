@@ -2703,6 +2703,24 @@ describe( 'selectors', () => {
 			expect( getEditedPostSlug( state ) ).toBe( 'edited-slug' );
 		} );
 
+		it( 'should return the server-generated slug if no saved or edited slug exists', () => {
+			const state = {
+				currentPost: {
+					title: 'Künstler überraschen Hörer',
+					generated_slug: 'kuenstler-ueberraschen-hoerer',
+				},
+				editor: {
+					present: {
+						edits: {},
+					},
+				},
+			};
+
+			expect( getEditedPostSlug( state ) ).toBe(
+				'kuenstler-ueberraschen-hoerer'
+			);
+		} );
+
 		it( 'should return the cleaned title as slug if no saved or edited slug exists', () => {
 			const state = {
 				currentPost: {
